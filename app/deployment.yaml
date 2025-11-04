@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment
+  name: playground-deployment
   labels:
-    app: my-web-app
+    app: wil-playground
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: my-web-app
+      app: wil-playground
   template:
     metadata:
       labels:
-        app: my-web-app
+        app: wil-playground
     spec:
       containers:
-      - name: my-web-container
-        image: nginxdemos/hello:latest  # Use your desired container image
+      - name: web-container
+        # Using the specified image
+        image: wil42/playground:v1 
         ports:
-        - containerPort: 8080
+        - containerPort: 8888

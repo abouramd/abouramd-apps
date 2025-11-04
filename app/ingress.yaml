@@ -1,26 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-app-ingress
-  namespace: dev # Important: Ensure this is in the target namespace
+  name: playground-ingress
+  namespace: dev # Target namespace
   annotations:
-    # IMPORTANT: The annotation below depends on your Ingress Controller (e.g., NGINX).
-    # If you are using NGINX, this ensures the path is correctly handled.
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  # The ingressClassName is necessary for Kubernetes versions >= 1.19
-  # Replace 'nginx' with the name of your installed Ingress Controller if different.
-  ingressClassName: nginx 
+  ingressClassName: nginx # Ensure this matches your Ingress Controller name
   rules:
-  # 1. Define the hostname users will access (e.g., in a browser)
-  - host: myapp.local.com # REPLACE with your desired hostname or leave blank for any host
+  - host: wil-app.local.com # You will need to resolve this hostname locally
     http:
       paths:
-      # 2. Define the path (e.g., myapp.local.com/api)
       - path: /
-        pathType: Prefix # The most common path matching type
+        pathType: Prefix
         backend:
           service:
-            name: my-app-service # Must match the Service name above
+            name: playground-service # Must match the Service name above
             port:
-              number: 80 # Must match the Service's exposed port
+              number: 80
