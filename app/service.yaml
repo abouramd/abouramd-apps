@@ -2,13 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-app-service
-  namespace: dev # Important: Ensure this is in the target namespace
 spec:
-  # CHANGE: Use ClusterIP, as Ingress handles external traffic
-  type: ClusterIP 
   selector:
-    app: my-web-app 
+    app: my-web-app # Must match the label in deployment.yaml
   ports:
     - protocol: TCP
-      port: 80 # Service is accessible internally on port 80
-      targetPort: 8080 # Routes to the container's port
+      port: 80
+      targetPort: 8080 # Must match the containerPort in deployment.yaml
+      nodePort: 8080
+  type: LoadBalancer # Or ClusterIP, depending on your needs
