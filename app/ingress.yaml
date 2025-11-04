@@ -4,9 +4,8 @@ metadata:
   name: playground-ingress
   namespace: dev # Target namespace
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  ingressClassName: nginx # Ensure this matches your Ingress Controller name
   rules:
   - http:
       paths:
