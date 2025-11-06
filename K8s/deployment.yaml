@@ -17,5 +17,7 @@ spec:
       containers:
       - name: playground
         image: hashicorp/http-echo
+        args:
+        - "-text=Hello, World, Abdelhay!"
         ports:
         - containerPort: 5678
