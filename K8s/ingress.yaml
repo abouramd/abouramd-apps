@@ -6,8 +6,17 @@ metadata:
   namespace: dev
 spec:
   rules:
-  - host: app.localhost
+  - host: argocd.localhost
     http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server-external
+            port:
+              number: 80
+  - http:
       paths:
       - path: /
         pathType: Prefix
