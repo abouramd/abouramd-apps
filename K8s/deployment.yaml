@@ -1,11 +1,11 @@
+# k8s/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: playground-deployment
-  labels:
-    app: wil-playground
+  name: wil-playground
+  namespace: dev # Deploys to the 'dev' namespace
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: wil-playground
@@ -15,8 +15,7 @@ spec:
         app: wil-playground
     spec:
       containers:
-      - name: web-container
-        # Using the specified image
-        image: wil42/playground:v1 
+      - name: playground
+        image: wil42/playground:v1  # <-- This is the version
         ports:
         - containerPort: 8888
