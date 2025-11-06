@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wil-playground
-  namespace: dev # Deploys to the 'dev' namespace
+  namespace: dev
 spec:
   replicas: 1
   selector:
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: playground
-        image: wil42/playground:v1  # <-- This is the version
+        image: hashicorp/http-echo
         ports:
-        - containerPort: 8888
+        - containerPort: 5678
